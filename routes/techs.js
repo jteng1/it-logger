@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const Tech = require('../models/Tech');
+
 // @route     GET api/techs
 // @desc      Get all technicians
 // @access    Public

@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const connectDB = require('./db');
 
 // Load env
 dotenv.config({ path: './config.env' });
@@ -8,8 +9,10 @@ dotenv.config({ path: './config.env' });
 const app = express();
 
 // Connect Database
+connectDB();
 
 // Init Middleware
+app.use(express.json({ extended: false }));
 
 // CORS
 
