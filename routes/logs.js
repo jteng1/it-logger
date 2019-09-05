@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { check, validationResult } = require('express-validator/check');
 
 const Log = require('../models/Log');
 
@@ -13,9 +14,22 @@ router.get('/', (req, res) => {
 // @route     POST api/logs
 // @desc      Add new log
 // @access    Public
-router.post('/', (req, res) => {
-  res.send(req.body);
-});
+router.post(
+  '/',
+  [
+    check('message', 'Message is required')
+      .not()
+      .isEmpty()
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    res.send('passed');
+  }
+);
 
 // @route     PUT api/logs/:id
 // @desc      Update log
