@@ -10,8 +10,8 @@ const LogSchema = mongoose.Schema({
     default: false
   },
   tech: {
-    type: mongoose.Schema.Types.ObjectID,
-    ref: 'techs'
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'tech'
   },
   date: {
     type: Date,

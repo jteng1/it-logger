@@ -9,7 +9,7 @@ const Log = require('../models/Log');
 // @access    Public
 router.get('/', async (req, res) => {
   try {
-    const logs = await Log.find({});
+    const logs = await Log.find().populate('tech');
 
     res.json(logs);
   } catch (err) {
