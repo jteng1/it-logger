@@ -11,7 +11,6 @@ const LogItem = ({ log, deleteLog, setCurrent }) => {
     deleteLog(log._id);
     M.toast({ html: 'Log Deleted' });
   };
-  console.log(log);
 
   const {
     tech: { firstName, lastName }

@@ -8,17 +8,18 @@ import { updateLog } from '../../actions/logActions';
 const EditLogModal = ({ current, updateLog }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
-  const [tech, setTech] = useState({});
+  const [tech, setTech] = useState('');
 
   useEffect(() => {
     if (current) {
       setMessage(current.message);
-      setTech(current.tech);
+      setTech(current.tech._id);
       setAttention(current.attention);
     }
   }, [current]);
 
   const onSubmit = () => {
+    console.log(attention, tech);
     if (message === '' || tech === '') {
       M.toast({ html: 'Please enter a message and tech!' });
     } else {
@@ -26,16 +27,16 @@ const EditLogModal = ({ current, updateLog }) => {
         _id: current._id,
         message,
         attention,
-        tech: tech._id,
+        tech,
         date: new Date()
       };
 
       updateLog(updLog);
-      M.toast({ html: `Log updated by ${tech.firstName} ${tech.lastName}` });
+      M.toast({ html: `Log updated` });
 
       // Clear Fields
       setMessage('');
-      setTech({});
+      setTech('');
       setAttention(false);
     }
   };
@@ -59,7 +60,7 @@ const EditLogModal = ({ current, updateLog }) => {
           <div className='input-field'>
             <select
               name='tech'
-              value={tech._id}
+              value={tech}
               className='browser-default'
               onChange={e => setTech(e.target.value)}
             >

@@ -109,7 +109,6 @@ export const updateLog = log => async dispatch => {
       type: UPDATE_LOG,
       payload: data
     });
-    console.log(data);
   } catch (err) {
     dispatch({
       type: LOGS_ERROR,

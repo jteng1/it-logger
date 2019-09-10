@@ -28,6 +28,11 @@ router.post(
       .not()
       .isEmpty()
   ],
+  [
+    check('tech', 'Tech is required')
+      .not()
+      .isEmpty()
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -57,12 +62,14 @@ router.post(
 // @desc      Update log
 // @access    Public
 router.put('/:id', async (req, res) => {
-  const { message, attention } = req.body;
+  const { message, attention, tech } = req.body;
 
   // Build log object
   const logFields = {};
   if (message) logFields.message = message;
-  if (attention) logFields.attention = attention;
+  logFields.attention = attention;
+  if (tech) logFields.tech = tech;
+  logFields.date = Date.now();
 
   try {
     let log = await Log.findById(req.params.id);
