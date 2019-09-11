@@ -12,6 +12,7 @@ import {
 
 const initialState = {
   logs: null,
+  filtered: null,
   current: null,
   loading: false,
   error: null
@@ -47,7 +48,15 @@ export default (state = initialState, action) => {
     case SEARCH_LOGS:
       return {
         ...state,
-        logs: action.payload
+        filtered: state.logs.filter(log => {
+          const { tech } = log;
+          const regex = new RegExp(`${action.payload}`, 'gi');
+          return (
+            log.message.match(regex) ||
+            tech.firstName.match(regex) ||
+            tech.lastName.match(regex)
+          );
+        })
       };
     case SET_CURRENT:
       return {

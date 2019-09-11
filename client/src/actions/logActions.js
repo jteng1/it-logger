@@ -118,23 +118,11 @@ export const updateLog = log => async dispatch => {
 };
 
 // Search server logs
-export const searchLogs = text => async dispatch => {
-  try {
-    setLoading();
-
-    const res = await fetch(`http://localhost:5000/api/logs?q=${text}`);
-    const data = await res.json();
-
-    dispatch({
-      type: SEARCH_LOGS,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
-  }
+export const searchLogs = text => {
+  return {
+    type: SEARCH_LOGS,
+    payload: text
+  };
 };
 
 // Set current log

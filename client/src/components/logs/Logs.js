@@ -5,7 +5,7 @@ import Preloader from '../layout/Preloader';
 import PropTypes from 'prop-types';
 import { getLogs } from '../../actions/logActions';
 
-const Logs = ({ log: { logs, loading }, getLogs }) => {
+const Logs = ({ log: { logs, loading, filtered }, getLogs }) => {
   useEffect(() => {
     getLogs();
     // eslint-disable-next-line
@@ -22,8 +22,10 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
       </li>
       {!loading && logs.length === 0 ? (
         <p className='center'>No logs to show...</p>
-      ) : (
+      ) : !filtered ? (
         logs.map(log => <LogItem log={log} key={log._id} />)
+      ) : (
+        filtered.map(log => <LogItem log={log} key={log._id} />)
       )}
     </ul>
   );
