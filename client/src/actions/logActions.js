@@ -30,7 +30,7 @@ export const getLogs = () => async dispatch => {
   try {
     setLoading();
 
-    const res = await fetch('http://localhost:5000/api/logs');
+    const res = await fetch('/api/logs');
     const data = await res.json();
 
     dispatch({
@@ -50,7 +50,7 @@ export const addLog = log => async dispatch => {
   try {
     setLoading();
 
-    const res = await fetch('http://localhost:5000/api/logs', {
+    const res = await fetch('/api/logs', {
       method: 'POST',
       body: JSON.stringify(log),
       headers: {
@@ -76,7 +76,7 @@ export const deleteLog = id => async dispatch => {
   try {
     setLoading();
 
-    await fetch(`http://localhost:5000/api/logs/${id}`, {
+    await fetch(`/api/logs/${id}`, {
       method: 'DELETE'
     });
 
@@ -97,7 +97,7 @@ export const updateLog = log => async dispatch => {
   try {
     setLoading();
 
-    const res = await fetch(`http://localhost:5000/api/logs/${log._id}`, {
+    const res = await fetch(`/api/logs/${log._id}`, {
       method: 'PUT',
       body: JSON.stringify(log),
       headers: {
