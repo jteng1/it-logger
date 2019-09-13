@@ -6,6 +6,7 @@ import {
   DELETE_LOG,
   UPDATE_LOG,
   SEARCH_LOGS,
+  CLEAR_SEARCH,
   SET_CURRENT,
   CLEAR_CURRENT
 } from '../actions/types';
@@ -53,10 +54,15 @@ export default (state = initialState, action) => {
           const regex = new RegExp(`${action.payload}`, 'gi');
           return (
             log.message.match(regex) ||
-            tech.firstName.match(regex) ||
-            tech.lastName.match(regex)
+            (tech.firstName ? tech.firstName.match(regex) : false) ||
+            (tech.lastName ? tech.lastName.match(regex) : false)
           );
         })
+      };
+    case CLEAR_SEARCH:
+      return {
+        ...state,
+        filtered: null
       };
     case SET_CURRENT:
       return {

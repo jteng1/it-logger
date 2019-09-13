@@ -6,6 +6,7 @@ import {
   DELETE_LOG,
   UPDATE_LOG,
   SEARCH_LOGS,
+  CLEAR_SEARCH,
   SET_CURRENT,
   CLEAR_CURRENT
 } from './types';
@@ -122,6 +123,13 @@ export const searchLogs = text => {
   return {
     type: SEARCH_LOGS,
     payload: text
+  };
+};
+
+// Clear searched server logs
+export const clearSearch = () => {
+  return {
+    type: CLEAR_SEARCH
   };
 };
 
