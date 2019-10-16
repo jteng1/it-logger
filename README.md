@@ -1,4 +1,4 @@
-## IT Logger
+## IT Log Tracker
 
 This project is an IT Logger that allows different technicians to track all bugs/fixes they are dealing with in their computer repair shop. Allows full CRUD operations for new technicians and new logs with the ability to flag a log urgent or not. Utilized React-Redux to manage a global state and Material UI for the design.
 
@@ -6,6 +6,10 @@ This project is an IT Logger that allows different technicians to track all bugs
 
 View the application at https://powerful-bayou-86248.herokuapp.com.<br>
 Please wait a couple seconds for it to load initially, heroku takes some time to reboot the application after inactivity.
+
+## Demo
+
+![IT Log Tracker](demo/itlogger.gif)
 
 ## Features
 
